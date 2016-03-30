@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PharmacyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="PharmacyModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="PharmacyModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="PharmacyModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="PharmacyModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="PharmacyModel.AspNetUser" />
+    <EntitySet Name="Deliveries" EntityType="PharmacyModel.Delivery" />
+    <EntitySet Name="Employees" EntityType="PharmacyModel.Employee" />
+    <EntitySet Name="Groups" EntityType="PharmacyModel.Group" />
+    <EntitySet Name="MedicineDeliveries" EntityType="PharmacyModel.MedicineDelivery" />
+    <EntitySet Name="Medicines" EntityType="PharmacyModel.Medicine" />
+    <EntitySet Name="Positions" EntityType="PharmacyModel.Position" />
+    <EntitySet Name="Suppliers" EntityType="PharmacyModel.Supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="PharmacyModel.sysdiagram" />
+    <EntitySet Name="Warehouses" EntityType="PharmacyModel.Warehouse" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="PharmacyModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="PharmacyModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deliveries_Suppliers_Id" Association="PharmacyModel.FK_Deliveries_Suppliers_Id">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Delivery" EntitySet="Deliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineDeliveries_Deliveries_Id" Association="PharmacyModel.FK_MedicineDeliveries_Deliveries_Id">
+      <End Role="Delivery" EntitySet="Deliveries" />
+      <End Role="MedicineDelivery" EntitySet="MedicineDeliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Positions_Id" Association="PharmacyModel.FK_Employees_Positions_Id">
+      <End Role="Position" EntitySet="Positions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Medicines_Groups_Id" Association="PharmacyModel.FK_Medicines_Groups_Id">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Medicine" EntitySet="Medicines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineDeliveries_Medicines_Id" Association="PharmacyModel.FK_MedicineDeliveries_Medicines_Id">
+      <End Role="Medicine" EntitySet="Medicines" />
+      <End Role="MedicineDelivery" EntitySet="MedicineDeliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Medicines_Suppliers_Id" Association="PharmacyModel.FK_Medicines_Suppliers_Id">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Medicine" EntitySet="Medicines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_Medicines_Id" Association="PharmacyModel.FK_Warehouse_Medicines_Id">
+      <End Role="Medicine" EntitySet="Medicines" />
+      <End Role="Warehouse" EntitySet="Warehouses" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="PharmacyModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="PharmacyModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="PharmacyModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="PharmacyModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="PharmacyModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="PharmacyModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="PharmacyModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="SupplierId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Supplier" Relationship="PharmacyModel.FK_Deliveries_Suppliers_Id" FromRole="Delivery" ToRole="Supplier" />
+    <NavigationProperty Name="MedicineDeliveries" Relationship="PharmacyModel.FK_MedicineDeliveries_Deliveries_Id" FromRole="Delivery" ToRole="MedicineDelivery" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PositionId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Position" Relationship="PharmacyModel.FK_Employees_Positions_Id" FromRole="Employee" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Medicines" Relationship="PharmacyModel.FK_Medicines_Groups_Id" FromRole="Group" ToRole="Medicine" />
+  </EntityType>
+  <EntityType Name="MedicineDelivery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="MedicineId" Type="Guid" Nullable="false" />
+    <Property Name="DeliveryId" Type="Guid" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Delivery" Relationship="PharmacyModel.FK_MedicineDeliveries_Deliveries_Id" FromRole="MedicineDelivery" ToRole="Delivery" />
+    <NavigationProperty Name="Medicine" Relationship="PharmacyModel.FK_MedicineDeliveries_Medicines_Id" FromRole="MedicineDelivery" ToRole="Medicine" />
+  </EntityType>
+  <EntityType Name="Medicine">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GroupId" Type="Guid" Nullable="false" />
+    <Property Name="SupplierId" Type="Guid" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <NavigationProperty Name="Group" Relationship="PharmacyModel.FK_Medicines_Groups_Id" FromRole="Medicine" ToRole="Group" />
+    <NavigationProperty Name="MedicineDeliveries" Relationship="PharmacyModel.FK_MedicineDeliveries_Medicines_Id" FromRole="Medicine" ToRole="MedicineDelivery" />
+    <NavigationProperty Name="Supplier" Relationship="PharmacyModel.FK_Medicines_Suppliers_Id" FromRole="Medicine" ToRole="Supplier" />
+    <NavigationProperty Name="Warehouse" Relationship="PharmacyModel.FK_Warehouse_Medicines_Id" FromRole="Medicine" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="Employees" Relationship="PharmacyModel.FK_Employees_Positions_Id" FromRole="Position" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Deliveries" Relationship="PharmacyModel.FK_Deliveries_Suppliers_Id" FromRole="Supplier" ToRole="Delivery" />
+    <NavigationProperty Name="Medicines" Relationship="PharmacyModel.FK_Medicines_Suppliers_Id" FromRole="Supplier" ToRole="Medicine" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="MedicineId" />
+    </Key>
+    <Property Name="MedicineId" Type="Guid" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Medicine" Relationship="PharmacyModel.FK_Warehouse_Medicines_Id" FromRole="Warehouse" ToRole="Medicine" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="PharmacyModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PharmacyModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="PharmacyModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PharmacyModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deliveries_Suppliers_Id">
+    <End Type="PharmacyModel.Supplier" Role="Supplier" Multiplicity="1" />
+    <End Type="PharmacyModel.Delivery" Role="Delivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineDeliveries_Deliveries_Id">
+    <End Type="PharmacyModel.Delivery" Role="Delivery" Multiplicity="1" />
+    <End Type="PharmacyModel.MedicineDelivery" Role="MedicineDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Delivery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicineDelivery">
+        <PropertyRef Name="DeliveryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Positions_Id">
+    <End Type="PharmacyModel.Position" Role="Position" Multiplicity="1" />
+    <End Type="PharmacyModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Medicines_Groups_Id">
+    <End Type="PharmacyModel.Group" Role="Group" Multiplicity="1" />
+    <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Medicine">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineDeliveries_Medicines_Id">
+    <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="1" />
+    <End Type="PharmacyModel.MedicineDelivery" Role="MedicineDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicineDelivery">
+        <PropertyRef Name="MedicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Medicines_Suppliers_Id">
+    <End Type="PharmacyModel.Supplier" Role="Supplier" Multiplicity="1" />
+    <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Medicine">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_Medicines_Id">
+    <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="1" />
+    <End Type="PharmacyModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="MedicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="PharmacyModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="PharmacyModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+</Schema>

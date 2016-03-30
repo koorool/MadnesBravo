@@ -1,0 +1,43 @@
+﻿@using ProjectPharmacy.Models; 
+    @model MedicineGroupViewModel
+
+@{
+    ViewBag.Title = "Index";
+    var _medicines = ViewBag.SelectedGroup == null ? (IEnumerable<Medicine>)Model.Medicines : Model.Groups.Single(t=>t.Id==(Guid)ViewBag.SelectedGroup).Medicines.OrderBy(t=>t.Name);
+}
+<h2>Medicines List</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+                    <a class="btn btn-primary btn-block" href="@Url.Action("Index", "MedicinesList")">All medicines</a>
+                @foreach (var item in Model.Groups)
+                {
+                        <a class="btn btn-default btn-block" href="@Url.Action("Index", "MedicinesList", new { groupId = item.Id })">@item.Name</a>
+                }
+        </div>
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Group</th>
+                        <th>Supplier</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in _medicines)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Group.Name</td>
+                            <td>@item.Supplier.Name</td>
+                            <td>@item.Price.ToString("c")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

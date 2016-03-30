@@ -1,0 +1,23 @@
+﻿@model List<ProjectPharmacy.Models.Medicine>
+@{
+    
+}
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Group</th>
+    <th>Supplier</th>
+    <th>Price</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Group.Name</td>
+                <td>@item.Supplier.Name</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

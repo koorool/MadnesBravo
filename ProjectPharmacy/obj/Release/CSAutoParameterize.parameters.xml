@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Identity-Web.config Connection String" description="Identity Connection String used in web.config by the application to access the database." defaultValue="Data Source=tegens.database.windows.net;user id=tegens;password=Masterfield9992;Initial Catalog=PharmacyDB" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Madnestranger\\Documents\\Visual\ Studio\ 2015\\Projects\\ProjectPharmacy\\ProjectPharmacy\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Identity']/@connectionString" />
+  </parameter>
+  <parameter name="PharmacyEntities-Web.config Connection String" description="PharmacyEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tegens.database.windows.net;user id=tegens;password=Masterfield9992;initial catalog=PharmacyDB;multipleactiveresultsets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Madnestranger\\Documents\\Visual\ Studio\ 2015\\Projects\\ProjectPharmacy\\ProjectPharmacy\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PharmacyEntities']/@connectionString" />
+  </parameter>
+</parameters>

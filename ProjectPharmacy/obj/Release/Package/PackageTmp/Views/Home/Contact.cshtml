@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ProjectPharmacy.Controllers.ContactViewModel>
+@{
+    ViewBag.Title = "Contact us";
+    var chotatam = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+<style>
+    #sup{
+        padding-top:230px;
+    }
+    #map {
+        width: 500px;
+        height: 500px;
+        display: inline-block;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>@ViewBag.Title.</h2>
+            <h3>@ViewBag.Message</h3>
+
+            <address>
+                Ukraine, Kyiv<br />
+                Left Coast, Boryspilska street, 28-B<br />
+                <abbr title="Phone">P:</abbr>
+                +38(093)487-93-76<br />
+                <span style="padding-left:17px;">+38(099)638-48-70</span>
+            </address>
+            <div id="map"></div>
+
+            <address>
+                <strong>Support:</strong>   <a href="madnestranger@ukr.net">madnestranger@ukr.net</a><br />
+                <strong>Marketing:</strong> <a href="bravo66@gmail.com">bravo66@gmail.com</a>
+            </address>
+            <p>For our <span class="lead">regular customers</span> we'll get the <strong class="lead">share!</strong></p>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAREAAAC5CAMAAAA4cvuLAAAAgVBMVEX///8AAADx8fFeXl6FhYWSkpL8/Pz5+fnExMRVVVU2NjalpaUgICDn5+f29vbr6+vLy8toaGgYGBjh4eG0tLTV1dWysrJzc3O8vLyfn58QEBBISEiXl5fZ2dmIiIhPT09sbGx9fX09PT0yMjIoKCiioqJBQUEUFBRjY2MkJCQcHBzukAc1AAAKVklEQVR4nO2da4OqLBDH08qsnrK2ze4Xu+1u3/8DPqEJaAJDKUMdf2/O2cKCfwLDzICNRk1NTU1NTU3Nv443dIMgGNwIAtf1sKuDibsZnVv75uVv6VCuh+44WvgbF7tyxpmG+8OPI2bZG/dH2JU0hbdZryRa8BzWo4/vRe58BlQj5TcMsCtdHZ35eKmW4JFu+JnDyiZ6Ro07448bVLyw94IehK/zELsRJeIu/ntRj5jtALshJeG2y5AjJvqEUdZbl6bHZ2gSlqoHYd3BbtMrjC6lC+I4p2/sZj2Nt69AD0L3TbvOvCI9CAvsxj3B8LdCQRxnNcFuoC7+V6WC3Aixm6jHtmo9boyxG6mBW8UU88j1bXrOtPIekzLHbiqMb1N63FhjNxZCeasYCHvs5qqJjApys9Zs9ztWZaaK2dntYKvWLCumZ7MrCepkL5ejvZKMUQRxnIOtHcf8GJKysnN4jdAEuQ2v2I0volzvoS4WLnKq9IZAaGMLkGeDLIh1a5yhscWdGLtWwjiGSJYfm5z0Zld3In6xZWCMJNVctfv+iDA/R3/FRZazxXdcJFw/2Hhf23647rK/u+ENUYZBH1uIlOFVJMdykTWwBwU302yaKeJ3+TfvbQxorySDxUT0ddYMJUJbNXo0Jd0oW6T52IgpSyNgORJ3nX6l3+ccKmylBkJLpPgmzhQv9IF5aR7SjL02YRINhIJY4lPr6AmSkeQsKBIlb8f9yU96XtxveuR/0mHchoSKSFC3lvCKc1pkJiyyo4r4t55FXmmSF/yG5BeIWZXdPH2mgqodJdfcx8n/xH6NAVUkvC/jiC/qSv5zFnzhHfzA1k5Qs6nkGj8pIpssZ0WKxBcokvu+sN1HomFVvhY9kSJLWYR/UqSIK/lCCvaST1Qv7vcftsmiZ8lnB7VIEc6n4Z2PtxdW/B1/YorEY8Pvva0HlSIObirFQlSt6yL19E2opcrmgbjbcDNlaoDt2UvR7c/N7d/BMkmN6CbXy8zjO+Lx2gAdWafexj3aY/ZWl14XD8ds+c6cTSx9iMyxZGppuPFv7h2TlkKc/ZiWq8Jvtg2yWQL0fg6ctL0xJ1qCLdb6zn3aTZgnd4zYgOdA9KcNlWmqrUxmHv3x3Kwi7GPYbUQUYR1rcx92IogiiDdJH1Q/yoleOAEq4ozJjdEIyHBFDHgX9kWROQlynNSV42EDxwiqyM3S2+3ibBS1Ac+BFb/RdDZz2XR9uCIpZGb2oF+FteDTcyV+56/UUuSvc3/tOuv7573KrWtOBB7QuJ/yGzxcqaVI/KvfJvJW0iHclvzr/AYGGtl312wNI31FiKA+b6LLv73bQMAT+hIfyOXj3u1OHUXi2WPHzVaNhvzrMfwkAHs6YZYb+d0vfUVIA6f3vrNZx/aG/CbBSIoGbkH8yu8no2a9hiKx8TpORmfiMSJ/ymdihNA4MIrXzYeVXLrO0VCELIKJE4koMnQSe0Nhm5jvNrBO8+Cs8Nl7cEWoAa+hiPluo5j+iqvl8Z0frggxdmMDXkMR890Gshdxm7vGP/LvghU5krDPQlMRx7R3URY0EfxMg2b2bbAixB83/EsV8Q5JKZUiprMnIMvejHtv+NACsCJkcE5Sy5NhKV4PK7PeTC+Am4r6OLlRdf5oUEEVifte4l5dsrBpoPr6r8o1yKIWhJ//CnfsQRUhg0Y6s1Efm2ebBxqwyuOWFm5hmgRQkdi9SpfZR5/cJh3I/gyzqz2Aa4TNvF6xZwmoyCmaRXxayU93D3NDmA3cANa9zHoXmC5METbGiD1G+pi1SESxTY4NLSwowBRhSTQsfP56eqws8lw6gn6QgQ6sIncxi+Cx1E82GoJsYjkmXfIQ+4z5ANbtPLGgXOzNT0aSHhc+B9yFKmTB+LKB5PPK/OHxZMzf1Z1RGIZTLklLniUCw2TiBGTykymSzB2yk3jKOJMiv6yqEkjcRK2ILBpZxqE2JkPiUSmKSGwoYc6BDibdz5C9RQBFhGVEqVx69AymhUMmAogip+K1RzmCmEzA6kCO8oIo4iyLOk5pJ/2YC/+qsyQU1eF63T5vR4264s+0VhEXchjg77YlYptZC6/6zOCfLo6iz3sCc/4AYBqHDr0bapeHJm+tSCWYO4yxVqRWpFakVuRfUcRcNFxLkW7IzI3GJMzuTbw0hRBDbSl+uwmwm83NvkPBpswC2g+1checfSdbefzK3enKEJZJmxW0riHsCu/bgCW3y+r8TopA8zaFLiEa3KhUkaXB9ADY2SuSPdppylalipj0j4By0E6yn+hiQBGTPjRQfro0gWNkQBGTflaIL14RUttVr4h4f235QOI1fLb+MD4oYcS3P1QqMpYrojaKTMZrICnxnAlNO1kr/xFMkX4+7rc+8opMHuKCkbIGJmN6HUDclzWWC+FyXXuZKVT8izNF1O1/xOhWLIBBQstmbihWy5OWIk8Exk9Gz6yJNBTx+VeZ771XtSJm80cAOUa0LJYiJqca0GRDy2IpYjih9Q0UMbxbXp3PSosiKbI0pESKOnGOFgUpMlQoon8AvenjA9Q2Gi0KUqThZehccopk34eM7MafYCJ7PuAziuSY5RXJAjCajZ/MElmuiPkDjXxVlYpLGlPE/LZwV9VtaEkcRRDOl1D50WhBFEUuZTVTA1W3KS5oShGMsxQ6im5DC6IognIoi8KMpOVginQy3DcPcIpk3vZUuXs4Z4MrfidaDqRIcdY3U0RzKwXSoc/yyB4thrGuMaRAHrlHnhZDUMRkRnwG6YEXtBSCImjPoZBmr9NS5hXBOzVPmtdKS5lXhEtYMY0s2kkLGVcE8xkUxX6enCKZxrKIwV9liiDeItKbhFmNnHuHBR4TMatQBPcgfcmZbdyuiOk9+f/Cv1aZIsiHX4v9rYqzHdpVKWI2TFOAML3/R2oU3CPH5SuyRH8mltgpIN23f7+3ylfEgmdPiHPSJCvyNB2mdEVseM6CeAa+Ct3hNNuidEWseBaHeMHXEwz7AR18ylYEfVhNEEc8l4WJT9/M+1ayIkdLnqsnW970Hnw3c352yp6F/QBb1UcgRVCtVR65E7q5nk+DmOl8UemjTDGOlxQQVdlOMCiHsoooc0/q02A/gyMDYCND5ZhM1gQAPr+2MiwwVrO8fjbVa1hiifCUcBTTC1g1qqZgPQGagBH4BlDeoRC62PpY7A6WJFfcxxrJKOEQs2ewVxCcjvNjsyAYHedgtSAN8zPOxdJBlSMyKoiVdkgek9arhZZqEebWONatZUQMNB+Q9SyWrXalAB9c8hIPD/mwG8ge6dewyIUIY1Ct/Xp8px6TUuWcg5Z69xoB4FEMT3GwJgqhzbyKSWf5NnNuEZ1SDuPN0LLfbJfjRqXq0UTOICqFoDxNmu87gGQZlOOVnn2KHoThGXLIrZTHk9XeHf+VuXiHtD2kYoLwOTt2tbYic6gaBn3dO2X3yXIkdPwW+BEK0bdV8f4KGfrrrtycPa3a848bSlUMpvP2vnnJblu6Hrr7bTj9+J4iwXPdYJASBK4luXU1NTU1NTU1NXj8DwdSn8/VEnMpAAAAAElFTkSuQmCC" alt="Sale" class="img-circle" />
+        </div>
+        <div class="col-md-6" id="sup">
+            <table class="table table-condensed" >
+                <thead>
+                    <tr>
+                        <th>Our suppliers <span class="glyphicon glyphicon-globe"></span></th>
+                        <th>Coordinate: Latitude</th>
+                        <th>Coordinate: Longtitude</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.Name</th>
+                            <th id="latitude">@item.Latitude</th>
+                            <th id="longtitude">@item.Longtitude</th>
+                        </tr>
+                   }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+
+<script>
+    function initMap() {
+        var data = JSON.parse('@Html.Raw(chotatam)');
+        var myLatLng = { lat: 50.424013, lng: 30.683625 };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng
+        });
+        for (var i = 0; i < data.length; i++) {
+            var myLatLng = { lat: Number(data[i].Latitude), lng: Number(data[i].Longtitude) };
+            new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: data[i].Name
+            });
+        }
+    }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ41eVka_Ioem1y-Ik96N3pgQNshFuMQ&callback=initMap">
+</script>

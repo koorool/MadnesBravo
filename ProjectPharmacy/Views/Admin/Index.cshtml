@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    a.btn.btn-default.btn-lg{
+        width:200px;
+        text-align:center;
+    }
+    li.list-group-item-heading{
+        font-size:x-large;
+    }
+</style>
+<div class="panel panel-heading">
+    <div class="row">
+        <h2 class="well">Admin panel <span class="glyphicon glyphicon-edit"></span></h2>
+        <div class="col-md-4">
+            <ul class="list-group-item-text list-unstyled">
+                <li class="list-group-item-heading">
+                    Work with Database <span class="glyphicon glyphicon-cloud-upload"></span>
+                </li>
+                <li class="list-group-item">
+                    <p><a class="btn btn-default btn-lg" href="@Url.Action("Index","Groups")">Groups</a></p>
+                </li>
+                <li class="list-group-item">
+                    <p><a class="btn btn-default btn-lg" href="@Url.Action("Index","Employees")">Employees</a></p>
+
+                </li>
+                <li class="list-group-item">
+                    <p><a class="btn btn-default btn-lg" href="@Url.Action("Index","Medicines")">Medicines</a></p>
+                </li>
+                <li class="list-group-item">
+                    <p><a class="btn btn-default btn-lg" href="@Url.Action("Index", "Positions")">Positions</a></p>
+                </li>
+                <li class="list-group-item">
+                    <p><a class="btn btn-default btn-lg" href="@Url.Action("Index", "Suppliers")">Suppliers</a></p>
+                </li>
+                <li class="list-group-item">
+                    <p><a class="btn btn-default btn-lg" href="@Url.Action("Index", "Deliveries")">Deliveries</a></p>
+                </li>
+                <li class="list-group-item">
+                    <p><a class="btn btn-default btn-lg" href="@Url.Action("Index", "MedicineDeliveries")">MedicineDeliveries</a></p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+    
+</div>
+
+

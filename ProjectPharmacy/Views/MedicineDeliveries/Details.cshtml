@@ -1,0 +1,42 @@
+﻿@model ProjectPharmacy.Models.MedicineDelivery
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MedicineDelivery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivery.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivery.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicine.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicine.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
