@@ -1,12 +1,74 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<link rel="stylesheet" href="~/Content/swiper.min.css">
+
+<style>
+    img {
+        width: 100%;
+        height: 100%;
+    }
+
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+
+    body {
+        background: #fff;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+</style>
 
 <div class="jumbotron">
     <h1>MadnesBravo - new step in Pharmacology</h1>
-    <p class="lead">We can get all kinds of medicaments from more than 10 producers of our city.</p>
+    <p class="lead">We can get all kinds of medicaments from more than 10 producers all over the world.</p>
     <p><a href="#" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="~/Content/4.jpg" alt="" class="img-rounded" />
+        </div>
+        <div class="swiper-slide">
+            <img src="~/Content/2.jpg" alt="" class="img-rounded"/>
+        </div>
+        <div class="swiper-slide">
+            <img src="~/Content/3.jpg" alt="" class="img-rounded"/>
+        </div>
+        <div class="swiper-slide">
+            <img src="~/Content/1.jpg" alt="" class="img-rounded" />
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
 
 <div class="row">
     <div class="col-md-4">
@@ -28,3 +90,13 @@
         <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
     </div>
 </div>
+<script src="/Scripts/swiper.js"></script>
+<!-- Initialize Swiper -->
+<script>
+        window.onload = function () {
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true
+            });
+        };
+</script>

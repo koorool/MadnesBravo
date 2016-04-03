@@ -65,8 +65,8 @@ C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\Pro
 C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.csprojResolveAssemblyReference.cache
+C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.Migrations.InitialCreate.resources
+C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.Migrations.Initial.resources
+C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.csproj.GenerateResource.Cache
 C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.dll
 C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.pdb
-C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.Migrations.InitialCreate.resources
-C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.csproj.GenerateResource.Cache
-C:\Users\Madnestranger\Documents\Visual Studio 2015\Projects\ProjectPharmacy\ProjectPharmacy\obj\Debug\ProjectPharmacy.Migrations.Initial.resources
