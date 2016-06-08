@@ -5,126 +5,61 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="PharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
+        <EntityType Name="Bus">
           <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="number" Type="int" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" />
+          <Property Name="capacity" Type="int" />
         </EntityType>
-        <EntityType Name="AspNetRoles">
+        <EntityType Name="Company">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="AspNetUserClaims">
+        <EntityType Name="Drivers">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ClaimType" Type="nvarchar(max)" />
-          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="experience" Type="nvarchar" MaxLength="50" />
+          <Property Name="busId" Type="uniqueidentifier" />
         </EntityType>
-        <EntityType Name="AspNetUserLogins">
+        <EntityType Name="Routes">
           <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="number" Type="int" />
+          <Property Name="companyId" Type="uniqueidentifier" />
         </EntityType>
-        <EntityType Name="AspNetUserRoles">
+        <EntityType Name="Routes_Buses">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="routeId" />
+            <PropertyRef Name="busId" />
           </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="routeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="busId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <EntityType Name="AspNetUsers">
+        <EntityType Name="Routes_Stops">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="routeId" />
+            <PropertyRef Name="stopId" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-          <Property Name="PasswordHash" Type="nvarchar(max)" />
-          <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="routeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="stopId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <EntityType Name="Deliveries">
+        <EntityType Name="Stops">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="SupplierId" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Employees">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PositionId" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Groups">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MedicineDeliveries">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="MedicineId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DeliveryId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Medicines">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="SupplierId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Price" Type="money" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Positions">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Suppliers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
-          <Property Name="Longtitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -136,212 +71,110 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Warehouse">
-          <Key>
-            <PropertyRef Name="MedicineId" />
-          </Key>
-          <Property Name="MedicineId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+        <Association Name="FK_Drivers_Bus">
+          <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
+            <Principal Role="Bus">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Drivers">
+              <PropertyRef Name="busId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+        <Association Name="FK_Routes_Buses_Bus">
+          <End Role="Bus" Type="Self.Bus" Multiplicity="1" />
+          <End Role="Routes_Buses" Type="Self.Routes_Buses" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
+            <Principal Role="Bus">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Routes_Buses">
+              <PropertyRef Name="busId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+        <Association Name="FK_Routes_Buses_Routes">
+          <End Role="Routes" Type="Self.Routes" Multiplicity="1" />
+          <End Role="Routes_Buses" Type="Self.Routes_Buses" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
+            <Principal Role="Routes">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
+            <Dependent Role="Routes_Buses">
+              <PropertyRef Name="routeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+        <Association Name="FK_Routes_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Routes" Type="Self.Routes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
+            <Principal Role="Company">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Routes">
+              <PropertyRef Name="companyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Deliveries_Suppliers_Id">
-          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
-          <End Role="Deliveries" Type="Self.Deliveries" Multiplicity="*" />
+        <Association Name="FK_Routes_Stops_Routes">
+          <End Role="Routes" Type="Self.Routes" Multiplicity="1" />
+          <End Role="Routes_Stops" Type="Self.Routes_Stops" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Suppliers">
-              <PropertyRef Name="Id" />
+            <Principal Role="Routes">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Deliveries">
-              <PropertyRef Name="SupplierId" />
+            <Dependent Role="Routes_Stops">
+              <PropertyRef Name="routeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employees_Positions_Id">
-          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
-          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+        <Association Name="FK_Routes_Stops_Stops">
+          <End Role="Stops" Type="Self.Stops" Multiplicity="1" />
+          <End Role="Routes_Stops" Type="Self.Routes_Stops" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Positions">
-              <PropertyRef Name="Id" />
+            <Principal Role="Stops">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Employees">
-              <PropertyRef Name="PositionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MedicineDeliveries_Deliveries_Id">
-          <End Role="Deliveries" Type="Self.Deliveries" Multiplicity="1" />
-          <End Role="MedicineDeliveries" Type="Self.MedicineDeliveries" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Deliveries">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MedicineDeliveries">
-              <PropertyRef Name="DeliveryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MedicineDeliveries_Medicines_Id">
-          <End Role="Medicines" Type="Self.Medicines" Multiplicity="1" />
-          <End Role="MedicineDeliveries" Type="Self.MedicineDeliveries" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medicines">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MedicineDeliveries">
-              <PropertyRef Name="MedicineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Medicines_Groups_Id">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
-          <End Role="Medicines" Type="Self.Medicines" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Medicines">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Medicines_Suppliers_Id">
-          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
-          <End Role="Medicines" Type="Self.Medicines" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suppliers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Medicines">
-              <PropertyRef Name="SupplierId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Warehouse_Medicines_Id">
-          <End Role="Medicines" Type="Self.Medicines" Multiplicity="1" />
-          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Medicines">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Warehouse">
-              <PropertyRef Name="MedicineId" />
+            <Dependent Role="Routes_Stops">
+              <PropertyRef Name="stopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="PharmacyModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Deliveries" EntityType="Self.Deliveries" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MedicineDeliveries" EntityType="Self.MedicineDeliveries" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Medicines" EntityType="Self.Medicines" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes_Buses" EntityType="Self.Routes_Buses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes_Stops" EntityType="Self.Routes_Stops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stops" EntityType="Self.Stops" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          <AssociationSet Name="FK_Drivers_Bus" Association="Self.FK_Drivers_Bus">
+            <End Role="Bus" EntitySet="Bus" />
+            <End Role="Drivers" EntitySet="Drivers" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          <AssociationSet Name="FK_Routes_Buses_Bus" Association="Self.FK_Routes_Buses_Bus">
+            <End Role="Bus" EntitySet="Bus" />
+            <End Role="Routes_Buses" EntitySet="Routes_Buses" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          <AssociationSet Name="FK_Routes_Buses_Routes" Association="Self.FK_Routes_Buses_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Routes_Buses" EntitySet="Routes_Buses" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          <AssociationSet Name="FK_Routes_Company" Association="Self.FK_Routes_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Routes" EntitySet="Routes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Deliveries_Suppliers_Id" Association="Self.FK_Deliveries_Suppliers_Id">
-            <End Role="Suppliers" EntitySet="Suppliers" />
-            <End Role="Deliveries" EntitySet="Deliveries" />
+          <AssociationSet Name="FK_Routes_Stops_Routes" Association="Self.FK_Routes_Stops_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Routes_Stops" EntitySet="Routes_Stops" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employees_Positions_Id" Association="Self.FK_Employees_Positions_Id">
-            <End Role="Positions" EntitySet="Positions" />
-            <End Role="Employees" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MedicineDeliveries_Deliveries_Id" Association="Self.FK_MedicineDeliveries_Deliveries_Id">
-            <End Role="Deliveries" EntitySet="Deliveries" />
-            <End Role="MedicineDeliveries" EntitySet="MedicineDeliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MedicineDeliveries_Medicines_Id" Association="Self.FK_MedicineDeliveries_Medicines_Id">
-            <End Role="Medicines" EntitySet="Medicines" />
-            <End Role="MedicineDeliveries" EntitySet="MedicineDeliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Medicines_Groups_Id" Association="Self.FK_Medicines_Groups_Id">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Medicines" EntitySet="Medicines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Medicines_Suppliers_Id" Association="Self.FK_Medicines_Suppliers_Id">
-            <End Role="Suppliers" EntitySet="Suppliers" />
-            <End Role="Medicines" EntitySet="Medicines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Warehouse_Medicines_Id" Association="Self.FK_Warehouse_Medicines_Id">
-            <End Role="Medicines" EntitySet="Medicines" />
-            <End Role="Warehouse" EntitySet="Warehouse" />
+          <AssociationSet Name="FK_Routes_Stops_Stops" Association="Self.FK_Routes_Stops_Stops">
+            <End Role="Stops" EntitySet="Stops" />
+            <End Role="Routes_Stops" EntitySet="Routes_Stops" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -354,15 +187,7 @@
           <EntitySet Name="AspNetUserClaims" EntityType="PharmacyModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="PharmacyModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="PharmacyModel.AspNetUser" />
-          <EntitySet Name="Deliveries" EntityType="PharmacyModel.Delivery" />
-          <EntitySet Name="Employees" EntityType="PharmacyModel.Employee" />
-          <EntitySet Name="Groups" EntityType="PharmacyModel.Group" />
-          <EntitySet Name="MedicineDeliveries" EntityType="PharmacyModel.MedicineDelivery" />
-          <EntitySet Name="Medicines" EntityType="PharmacyModel.Medicine" />
-          <EntitySet Name="Positions" EntityType="PharmacyModel.Position" />
-          <EntitySet Name="Suppliers" EntityType="PharmacyModel.Supplier" />
           <EntitySet Name="sysdiagrams" EntityType="PharmacyModel.sysdiagram" />
-          <EntitySet Name="Warehouses" EntityType="PharmacyModel.Warehouse" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="PharmacyModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -371,37 +196,30 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Deliveries_Suppliers_Id" Association="PharmacyModel.FK_Deliveries_Suppliers_Id">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="Delivery" EntitySet="Deliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MedicineDeliveries_Deliveries_Id" Association="PharmacyModel.FK_MedicineDeliveries_Deliveries_Id">
-            <End Role="Delivery" EntitySet="Deliveries" />
-            <End Role="MedicineDelivery" EntitySet="MedicineDeliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employees_Positions_Id" Association="PharmacyModel.FK_Employees_Positions_Id">
-            <End Role="Position" EntitySet="Positions" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Medicines_Groups_Id" Association="PharmacyModel.FK_Medicines_Groups_Id">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Medicine" EntitySet="Medicines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MedicineDeliveries_Medicines_Id" Association="PharmacyModel.FK_MedicineDeliveries_Medicines_Id">
-            <End Role="Medicine" EntitySet="Medicines" />
-            <End Role="MedicineDelivery" EntitySet="MedicineDeliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Medicines_Suppliers_Id" Association="PharmacyModel.FK_Medicines_Suppliers_Id">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="Medicine" EntitySet="Medicines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Warehouse_Medicines_Id" Association="PharmacyModel.FK_Warehouse_Medicines_Id">
-            <End Role="Medicine" EntitySet="Medicines" />
-            <End Role="Warehouse" EntitySet="Warehouses" />
-          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="PharmacyModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Buses" EntityType="PharmacyModel.Bus" />
+          <EntitySet Name="Companies" EntityType="PharmacyModel.Company" />
+          <EntitySet Name="Drivers" EntityType="PharmacyModel.Driver" />
+          <EntitySet Name="Routes" EntityType="PharmacyModel.Route" />
+          <EntitySet Name="Stops" EntityType="PharmacyModel.Stop" />
+          <AssociationSet Name="FK_Drivers_Bus" Association="PharmacyModel.FK_Drivers_Bus">
+            <End Role="Bus" EntitySet="Buses" />
+            <End Role="Driver" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Company" Association="PharmacyModel.FK_Routes_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Route" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="Routes_Buses" Association="PharmacyModel.Routes_Buses">
+            <End Role="Bus" EntitySet="Buses" />
+            <End Role="Route" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="Routes_Stops" Association="PharmacyModel.Routes_Stops">
+            <End Role="Route" EntitySet="Routes" />
+            <End Role="Stop" EntitySet="Stops" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -463,79 +281,6 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="PharmacyModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="AspNetRoles" Relationship="PharmacyModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
-        <EntityType Name="Delivery">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="SupplierId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Supplier" Relationship="PharmacyModel.FK_Deliveries_Suppliers_Id" FromRole="Delivery" ToRole="Supplier" />
-          <NavigationProperty Name="MedicineDeliveries" Relationship="PharmacyModel.FK_MedicineDeliveries_Deliveries_Id" FromRole="Delivery" ToRole="MedicineDelivery" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PositionId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Position" Relationship="PharmacyModel.FK_Employees_Positions_Id" FromRole="Employee" ToRole="Position" />
-        </EntityType>
-        <EntityType Name="Group">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Medicines" Relationship="PharmacyModel.FK_Medicines_Groups_Id" FromRole="Group" ToRole="Medicine" />
-        </EntityType>
-        <EntityType Name="MedicineDelivery">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="MedicineId" Type="Guid" Nullable="false" />
-          <Property Name="DeliveryId" Type="Guid" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Delivery" Relationship="PharmacyModel.FK_MedicineDeliveries_Deliveries_Id" FromRole="MedicineDelivery" ToRole="Delivery" />
-          <NavigationProperty Name="Medicine" Relationship="PharmacyModel.FK_MedicineDeliveries_Medicines_Id" FromRole="MedicineDelivery" ToRole="Medicine" />
-        </EntityType>
-        <EntityType Name="Medicine">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GroupId" Type="Guid" Nullable="false" />
-          <Property Name="SupplierId" Type="Guid" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Group" Relationship="PharmacyModel.FK_Medicines_Groups_Id" FromRole="Medicine" ToRole="Group" />
-          <NavigationProperty Name="MedicineDeliveries" Relationship="PharmacyModel.FK_MedicineDeliveries_Medicines_Id" FromRole="Medicine" ToRole="MedicineDelivery" />
-          <NavigationProperty Name="Supplier" Relationship="PharmacyModel.FK_Medicines_Suppliers_Id" FromRole="Medicine" ToRole="Supplier" />
-          <NavigationProperty Name="Warehouse" Relationship="PharmacyModel.FK_Warehouse_Medicines_Id" FromRole="Medicine" ToRole="Warehouse" />
-        </EntityType>
-        <EntityType Name="Position">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Salary" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <NavigationProperty Name="Employees" Relationship="PharmacyModel.FK_Employees_Positions_Id" FromRole="Position" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Supplier">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Deliveries" Relationship="PharmacyModel.FK_Deliveries_Suppliers_Id" FromRole="Supplier" ToRole="Delivery" />
-          <NavigationProperty Name="Medicines" Relationship="PharmacyModel.FK_Medicines_Suppliers_Id" FromRole="Supplier" ToRole="Medicine" />
-        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -545,14 +290,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Warehouse">
-          <Key>
-            <PropertyRef Name="MedicineId" />
-          </Key>
-          <Property Name="MedicineId" Type="Guid" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Medicine" Relationship="PharmacyModel.FK_Warehouse_Medicines_Id" FromRole="Warehouse" ToRole="Medicine" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="PharmacyModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -582,93 +319,89 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Deliveries_Suppliers_Id">
-          <End Type="PharmacyModel.Supplier" Role="Supplier" Multiplicity="1" />
-          <End Type="PharmacyModel.Delivery" Role="Delivery" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Supplier">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Delivery">
-              <PropertyRef Name="SupplierId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MedicineDeliveries_Deliveries_Id">
-          <End Type="PharmacyModel.Delivery" Role="Delivery" Multiplicity="1" />
-          <End Type="PharmacyModel.MedicineDelivery" Role="MedicineDelivery" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Delivery">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MedicineDelivery">
-              <PropertyRef Name="DeliveryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employees_Positions_Id">
-          <End Type="PharmacyModel.Position" Role="Position" Multiplicity="1" />
-          <End Type="PharmacyModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Position">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="PositionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Medicines_Groups_Id">
-          <End Type="PharmacyModel.Group" Role="Group" Multiplicity="1" />
-          <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Medicine">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MedicineDeliveries_Medicines_Id">
-          <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="1" />
-          <End Type="PharmacyModel.MedicineDelivery" Role="MedicineDelivery" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medicine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MedicineDelivery">
-              <PropertyRef Name="MedicineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Medicines_Suppliers_Id">
-          <End Type="PharmacyModel.Supplier" Role="Supplier" Multiplicity="1" />
-          <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Supplier">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Medicine">
-              <PropertyRef Name="SupplierId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Warehouse_Medicines_Id">
-          <End Type="PharmacyModel.Medicine" Role="Medicine" Multiplicity="1" />
-          <End Type="PharmacyModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Medicine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Warehouse">
-              <PropertyRef Name="MedicineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Type="PharmacyModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="PharmacyModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Bus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="number" Type="Int32" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="capacity" Type="Int32" />
+          <NavigationProperty Name="Drivers" Relationship="PharmacyModel.FK_Drivers_Bus" FromRole="Bus" ToRole="Driver" />
+          <NavigationProperty Name="Routes" Relationship="PharmacyModel.Routes_Buses" FromRole="Bus" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Routes" Relationship="PharmacyModel.FK_Routes_Company" FromRole="Company" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="experience" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="busId" Type="Guid" />
+          <NavigationProperty Name="Bus" Relationship="PharmacyModel.FK_Drivers_Bus" FromRole="Driver" ToRole="Bus" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="number" Type="Int32" />
+          <Property Name="companyId" Type="Guid" />
+          <NavigationProperty Name="Company" Relationship="PharmacyModel.FK_Routes_Company" FromRole="Route" ToRole="Company" />
+          <NavigationProperty Name="Buses" Relationship="PharmacyModel.Routes_Buses" FromRole="Route" ToRole="Bus" />
+          <NavigationProperty Name="Stops" Relationship="PharmacyModel.Routes_Stops" FromRole="Route" ToRole="Stop" />
+        </EntityType>
+        <EntityType Name="Stop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Routes" Relationship="PharmacyModel.Routes_Stops" FromRole="Stop" ToRole="Route" />
+        </EntityType>
+        <Association Name="FK_Drivers_Bus">
+          <End Type="PharmacyModel.Bus" Role="Bus" Multiplicity="0..1" />
+          <End Type="PharmacyModel.Driver" Role="Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="busId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Company">
+          <End Type="PharmacyModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="PharmacyModel.Route" Role="Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Routes_Buses">
+          <End Type="PharmacyModel.Bus" Role="Bus" Multiplicity="*" />
+          <End Type="PharmacyModel.Route" Role="Route" Multiplicity="*" />
+        </Association>
+        <Association Name="Routes_Stops">
+          <End Type="PharmacyModel.Route" Role="Route" Multiplicity="*" />
+          <End Type="PharmacyModel.Stop" Role="Stop" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -676,128 +409,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PharmacyModelStoreContainer" CdmEntityContainer="PharmacyEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="PharmacyModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="PharmacyModel.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="PharmacyModel.AspNetUserClaim">
-              <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="PharmacyModel.AspNetUserLogin">
-              <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="PharmacyModel.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Deliveries">
-            <EntityTypeMapping TypeName="PharmacyModel.Delivery">
-              <MappingFragment StoreEntitySet="Deliveries">
-                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="PharmacyModel.Employee">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Groups">
-            <EntityTypeMapping TypeName="PharmacyModel.Group">
-              <MappingFragment StoreEntitySet="Groups">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MedicineDeliveries">
-            <EntityTypeMapping TypeName="PharmacyModel.MedicineDelivery">
-              <MappingFragment StoreEntitySet="MedicineDeliveries">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="DeliveryId" ColumnName="DeliveryId" />
-                <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Medicines">
-            <EntityTypeMapping TypeName="PharmacyModel.Medicine">
-              <MappingFragment StoreEntitySet="Medicines">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="PharmacyModel.Position">
-              <MappingFragment StoreEntitySet="Positions">
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="PharmacyModel.Supplier">
-              <MappingFragment StoreEntitySet="Suppliers">
-                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PharmacyModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -809,23 +420,68 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Warehouses">
-            <EntityTypeMapping TypeName="PharmacyModel.Warehouse">
-              <MappingFragment StoreEntitySet="Warehouse">
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <EntitySetMapping Name="Buses">
+            <EntityTypeMapping TypeName="PharmacyModel.Bus">
+              <MappingFragment StoreEntitySet="Bus">
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="PharmacyModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="PharmacyModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="PharmacyModel.Driver">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="busId" ColumnName="busId" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes">
+            <EntityTypeMapping TypeName="PharmacyModel.Route">
+              <MappingFragment StoreEntitySet="Routes">
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stops">
+            <EntityTypeMapping TypeName="PharmacyModel.Stop">
+              <MappingFragment StoreEntitySet="Stops">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Routes_Buses" TypeName="PharmacyModel.Routes_Buses" StoreEntitySet="Routes_Buses">
+            <EndProperty Name="Route">
+              <ScalarProperty Name="id" ColumnName="routeId" />
             </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            <EndProperty Name="Bus">
+              <ScalarProperty Name="id" ColumnName="busId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          <AssociationSetMapping Name="Routes_Stops" TypeName="PharmacyModel.Routes_Stops" StoreEntitySet="Routes_Stops">
+            <EndProperty Name="Stop">
+              <ScalarProperty Name="id" ColumnName="stopId" />
+            </EndProperty>
+            <EndProperty Name="Route">
+              <ScalarProperty Name="id" ColumnName="routeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

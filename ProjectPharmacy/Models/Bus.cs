@@ -15,27 +15,37 @@ namespace ProjectPharmacy.Models
 using System;
     using System.Collections.Generic;
     
-public partial class AspNetRole
+public partial class Bus
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public AspNetRole()
+    public Bus()
     {
 
-        this.AspNetUsers = new HashSet<AspNetUser>();
+        this.Drivers = new HashSet<Driver>();
+
+        this.Routes = new HashSet<Route>();
 
     }
 
 
-    public string Id { get; set; }
+    public System.Guid id { get; set; }
 
-    public string Name { get; set; }
+    public Nullable<int> number { get; set; }
+
+    public string model { get; set; }
+
+    public Nullable<int> capacity { get; set; }
 
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+    public virtual ICollection<Driver> Drivers { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Route> Routes { get; set; }
 
 }
 

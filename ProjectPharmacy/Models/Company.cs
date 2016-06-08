@@ -15,20 +15,27 @@ namespace ProjectPharmacy.Models
 using System;
     using System.Collections.Generic;
     
-public partial class AspNetUserClaim
+public partial class Company
 {
 
-    public int Id { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Company()
+    {
 
-    public string UserId { get; set; }
+        this.Routes = new HashSet<Route>();
 
-    public string ClaimType { get; set; }
-
-    public string ClaimValue { get; set; }
+    }
 
 
+    public System.Guid id { get; set; }
 
-    public virtual AspNetUser AspNetUser { get; set; }
+    public string Name { get; set; }
+
+
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Route> Routes { get; set; }
 
 }
 

@@ -4,31 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ebac730836d040a8bd92fec572dd7fa3" Name="Diagram1">
-        <EntityTypeShape EntityType="PharmacyModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="10.375" />
-        <EntityTypeShape EntityType="PharmacyModel.AspNetRole" Width="1.5" PointX="7.75" PointY="3.125" />
-        <EntityTypeShape EntityType="PharmacyModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="4.25" />
-        <EntityTypeShape EntityType="PharmacyModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="1.625" />
-        <EntityTypeShape EntityType="PharmacyModel.AspNetUser" Width="1.5" PointX="10" PointY="2" />
-        <EntityTypeShape EntityType="PharmacyModel.Delivery" Width="1.5" PointX="3" PointY="7" />
-        <EntityTypeShape EntityType="PharmacyModel.Employee" Width="1.5" PointX="8" PointY="8.5" />
-        <EntityTypeShape EntityType="PharmacyModel.Group" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="PharmacyModel.MedicineDelivery" Width="1.5" PointX="5.25" PointY="5" />
-        <EntityTypeShape EntityType="PharmacyModel.Medicine" Width="1.5" PointX="3" PointY="3.125" />
-        <EntityTypeShape EntityType="PharmacyModel.Position" Width="1.5" PointX="5.75" PointY="8.625" />
-        <EntityTypeShape EntityType="PharmacyModel.Supplier" Width="1.5" PointX="0.75" PointY="3.5" />
-        <EntityTypeShape EntityType="PharmacyModel.sysdiagram" Width="1.5" PointX="2.75" PointY="10.375" />
-        <EntityTypeShape EntityType="PharmacyModel.Warehouse" Width="1.5" PointX="5.25" PointY="1.75" />
+      <Diagram DiagramId="ebac730836d040a8bd92fec572dd7fa3" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="PharmacyModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="1.75" />
+        <EntityTypeShape EntityType="PharmacyModel.AspNetRole" Width="1.5" PointX="5.75" PointY="8.5" />
+        <EntityTypeShape EntityType="PharmacyModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="9.625" />
+        <EntityTypeShape EntityType="PharmacyModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="7.125" />
+        <EntityTypeShape EntityType="PharmacyModel.AspNetUser" Width="1.5" PointX="8" PointY="7.375" />
+        <EntityTypeShape EntityType="PharmacyModel.sysdiagram" Width="1.5" PointX="0.75" PointY="9.75" />
         <AssociationConnector Association="PharmacyModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="PharmacyModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="PharmacyModel.FK_Deliveries_Suppliers_Id" />
-        <AssociationConnector Association="PharmacyModel.FK_MedicineDeliveries_Deliveries_Id" />
-        <AssociationConnector Association="PharmacyModel.FK_Employees_Positions_Id" />
-        <AssociationConnector Association="PharmacyModel.FK_Medicines_Groups_Id" />
-        <AssociationConnector Association="PharmacyModel.FK_MedicineDeliveries_Medicines_Id" />
-        <AssociationConnector Association="PharmacyModel.FK_Medicines_Suppliers_Id" />
-        <AssociationConnector Association="PharmacyModel.FK_Warehouse_Medicines_Id" />
         <AssociationConnector Association="PharmacyModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="PharmacyModel.Bus" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="PharmacyModel.Company" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PharmacyModel.Driver" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="PharmacyModel.Route" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="PharmacyModel.Stop" Width="1.5" PointX="5.25" PointY="3.75" />
+        <AssociationConnector Association="PharmacyModel.FK_Drivers_Bus" />
+        <AssociationConnector Association="PharmacyModel.FK_Routes_Company" />
+        <AssociationConnector Association="PharmacyModel.Routes_Buses" />
+        <AssociationConnector Association="PharmacyModel.Routes_Stops" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
