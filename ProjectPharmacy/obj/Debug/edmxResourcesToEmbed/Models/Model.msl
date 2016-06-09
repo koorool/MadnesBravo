@@ -1,16 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="PharmacyModelStoreContainer" CdmEntityContainer="PharmacyEntities">
-    <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="PharmacyModel.C__MigrationHistory">
-        <MappingFragment StoreEntitySet="__MigrationHistory">
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PharmacyModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PharmacyModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PharmacyModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PharmacyModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PharmacyModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PharmacyModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PharmacyModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PharmacyModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PharmacyModel.Store.sp_upgraddiagrams" />
     <EntitySetMapping Name="AspNetRoles">
       <EntityTypeMapping TypeName="PharmacyModel.AspNetRole">
         <MappingFragment StoreEntitySet="AspNetRoles">
@@ -56,70 +70,58 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Deliveries">
-      <EntityTypeMapping TypeName="PharmacyModel.Delivery">
-        <MappingFragment StoreEntitySet="Deliveries">
-          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="Buses">
+      <EntityTypeMapping TypeName="PharmacyModel.Bus">
+        <MappingFragment StoreEntitySet="Buses">
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="PharmacyModel.Employee">
-        <MappingFragment StoreEntitySet="Employees">
-          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="PharmacyModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="PharmacyModel.Company">
+        <MappingFragment StoreEntitySet="Companies">
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Groups">
-      <EntityTypeMapping TypeName="PharmacyModel.Group">
-        <MappingFragment StoreEntitySet="Groups">
+    <EntitySetMapping Name="Drivers">
+      <EntityTypeMapping TypeName="PharmacyModel.Driver">
+        <MappingFragment StoreEntitySet="Drivers">
+          <ScalarProperty Name="busId" ColumnName="busId" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MedicineDeliveries">
-      <EntityTypeMapping TypeName="PharmacyModel.MedicineDelivery">
-        <MappingFragment StoreEntitySet="MedicineDeliveries">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="DeliveryId" ColumnName="DeliveryId" />
-          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+    <EntitySetMapping Name="Routes">
+      <EntityTypeMapping TypeName="PharmacyModel.Route">
+        <MappingFragment StoreEntitySet="Routes">
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Medicines">
-      <EntityTypeMapping TypeName="PharmacyModel.Medicine">
-        <MappingFragment StoreEntitySet="Medicines">
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
-          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+    <EntitySetMapping Name="Stops">
+      <EntityTypeMapping TypeName="PharmacyModel.Stop">
+        <MappingFragment StoreEntitySet="Stops">
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Positions">
-      <EntityTypeMapping TypeName="PharmacyModel.Position">
-        <MappingFragment StoreEntitySet="Positions">
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Suppliers">
-      <EntityTypeMapping TypeName="PharmacyModel.Supplier">
-        <MappingFragment StoreEntitySet="Suppliers">
-          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -134,20 +136,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Warehouses">
-      <EntityTypeMapping TypeName="PharmacyModel.Warehouse">
-        <MappingFragment StoreEntitySet="Warehouse">
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="PharmacyModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetUser">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
+        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
       </EndProperty>
       <EndProperty Name="AspNetRole">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
+        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Routes_Buses" TypeName="PharmacyModel.Routes_Buses" StoreEntitySet="Routes_Buses">
+      <EndProperty Name="Route">
+        <ScalarProperty Name="id" ColumnName="Routes_id" />
+      </EndProperty>
+      <EndProperty Name="Bus">
+        <ScalarProperty Name="id" ColumnName="Buses_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Routes_Stops" TypeName="PharmacyModel.Routes_Stops" StoreEntitySet="Routes_Stops">
+      <EndProperty Name="Stop">
+        <ScalarProperty Name="id" ColumnName="Stops_id" />
+      </EndProperty>
+      <EndProperty Name="Route">
+        <ScalarProperty Name="id" ColumnName="Routes_id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

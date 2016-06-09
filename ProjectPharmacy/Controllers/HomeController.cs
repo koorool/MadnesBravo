@@ -16,14 +16,14 @@ namespace ProjectPharmacy.Controllers
         }
         
 
-        public ActionResult Contact()
-        {
-            var sups = db.Suppliers
-                .Select(x=>new ContactViewModel { Name=x.Name, Latitude=x.Latitude, Longtitude=x.Longtitude});
-            ViewBag.Message = "We are free to contact with you. Here our addresses:";
+        //public ActionResult Contact()
+        //{
+        //    //var sups = db.Companies
+        //    //    .Select(x=>new ContactViewModel { Name=x.Name, Latitude=x.Latitude, Longtitude=x.Longtitude});
+        //    //ViewBag.Message = "We are free to contact with you. Here our addresses:";
 
-            return View(sups);
-        }
+        //    return View(sups);
+        //}
     }
     public class ContactViewModel
     {
