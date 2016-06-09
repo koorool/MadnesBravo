@@ -14,13 +14,7 @@ namespace ProjectPharmacy.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Describe of purpose of MadnesBravo Corp.";
-
-            return View();
-        }
+        
 
         public ActionResult Contact()
         {
