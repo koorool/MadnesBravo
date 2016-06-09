@@ -15,7 +15,7 @@
     }
 
     body {
-        background: #fff;
+        background: #92B6D5;
         font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     }
 
@@ -23,80 +23,8 @@
         width: 100%;
         height: 100%;
     }
-
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
 </style>
 
-<div class="jumbotron">
-    <h1>MadnesBravo - new step in Pharmacology</h1>
-    <p class="lead">We can get all kinds of medicaments from more than 10 producers all over the world.</p>
-    <p><a href="#" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div>
+    <img src="~/Content/bg.jpg" alt="" class="img-rounded" />
 </div>
-
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="~/Content/4.jpg" alt="" class="img-rounded" />
-        </div>
-        <div class="swiper-slide">
-            <img src="~/Content/2.jpg" alt="" class="img-rounded"/>
-        </div>
-        <div class="swiper-slide">
-            <img src="~/Content/3.jpg" alt="" class="img-rounded"/>
-        </div>
-        <div class="swiper-slide">
-            <img src="~/Content/1.jpg" alt="" class="img-rounded" />
-        </div>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-</div>
-
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Take job</h2>
-        <p>
-           We have great vacancy for young and perspective people. Flexible shedule. 
-            <a href=#">Let's Get  it started!</a>
-        </p>
-        <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>We are the best</h2>
-        <p>The best choice, friendly emloyees, convenient location, a lot of marijuana. Join us!</p>
-        <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Work with us</h2>
-        <p>We can work with you on your conditions, responsible workers make our generic labor come to success!</p>
-        <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
-    </div>
-</div>
-<script src="/Scripts/swiper.js"></script>
-<!-- Initialize Swiper -->
-<script>
-        window.onload = function () {
-            var swiper = new Swiper('.swiper-container', {
-                pagination: '.swiper-pagination',
-                paginationClickable: true
-            });
-        };
-</script>

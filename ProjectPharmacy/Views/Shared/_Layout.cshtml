@@ -9,7 +9,7 @@
    
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#79C753;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,14 +17,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="@Url.Action("Index","Home")" class="navbar-brand">MadnesBravo <span class="glyphicon glyphicon-plus"></span></a>
+                <a href="@Url.Action("Index","Home")" class="navbar-brand">Home</a>
               @*  @Html.ActionLink("MadnesBravo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Catalog", "Index", "MedicinesList")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav" style="background-color:#79C753;">
+                    <li>@Html.ActionLink("Schedule", "Index", "MedicinesList")</li>
+                    <li>@Html.ActionLink("Route", "Route", "Home")</li>
+                    <li>@Html.ActionLink("Companies", "Companies", "Home")</li>
+                    <li>@Html.ActionLink("Buses", "Buses", "Home")</li>
+                    <li>@Html.ActionLink("Stops", "Stops", "Home")</li>
+                    <li>@Html.ActionLink("List for driver", "List for driver", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -32,10 +35,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - MadnesBravo Corp.</p>
-        </footer>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
