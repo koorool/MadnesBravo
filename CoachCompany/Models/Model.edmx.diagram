@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6120738d0ece423cb673db81f86d151e" Name="Diagram1">
+        <EntityTypeShape EntityType="CoachModel.Bus" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="CoachModel.Company" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CoachModel.Driver" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="CoachModel.Route" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="CoachModel.Stop" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="CoachModel.FK_Drivers_Bus" />
+        <AssociationConnector Association="CoachModel.FK_Routes_Company" />
+        <AssociationConnector Association="CoachModel.Routes_Buses" />
+        <AssociationConnector Association="CoachModel.Routes_Stops" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

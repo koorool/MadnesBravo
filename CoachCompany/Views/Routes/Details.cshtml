@@ -1,0 +1,74 @@
+﻿@model CoachCompany.Models.Route
+
+@{
+    ViewBag.Title = "Details";
+    var chotatam = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.routeModel.Stops);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #sup {
+        padding-top: 230px;
+    }
+
+    #map {
+        width: 500px;
+        height: 500px;
+        display: inline-block;
+    }
+</style>
+
+<h2>Details</h2>
+
+<div>
+    <h4>Route</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+
+    </dl>
+
+    <div id="map"></div>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<script>
+    function initMap() {
+        var data = JSON.parse('@Html.Raw(chotatam)');
+        var myLatLng = { lat: 50.4305495, lng: 30.5337963 };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: myLatLng
+        });
+        for (var i = 0; i < data.length; i++) {
+            var myLatLng = { lat: Number(data[i].Latitude), lng: Number(data[i].Longtitude) };
+            new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: data[i].Name
+            });
+        }
+    }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ41eVka_Ioem1y-Ik96N3pgQNshFuMQ&callback=initMap">
+</script>

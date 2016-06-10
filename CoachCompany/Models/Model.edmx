@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CoachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Buses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="number" Type="int" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" />
+          <Property Name="capacity" Type="int" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="experience" Type="nvarchar" MaxLength="50" />
+          <Property Name="busId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Routes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="number" Type="int" />
+          <Property Name="companyId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Routes_Buses">
+          <Key>
+            <PropertyRef Name="Buses_id" />
+            <PropertyRef Name="Routes_id" />
+          </Key>
+          <Property Name="Buses_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Routes_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Routes_Stops">
+          <Key>
+            <PropertyRef Name="Routes_id" />
+            <PropertyRef Name="Stops_id" />
+          </Key>
+          <Property Name="Routes_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Stops_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stops">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longtitude" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Drivers_Bus">
+          <End Role="Buses" Type="Self.Buses" Multiplicity="0..1" />
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Drivers">
+              <PropertyRef Name="busId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Buses_Bus">
+          <End Role="Buses" Type="Self.Buses" Multiplicity="1" />
+          <End Role="Routes_Buses" Type="Self.Routes_Buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Routes_Buses">
+              <PropertyRef Name="Buses_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Buses_Route">
+          <End Role="Routes" Type="Self.Routes" Multiplicity="1" />
+          <End Role="Routes_Buses" Type="Self.Routes_Buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Routes_Buses">
+              <PropertyRef Name="Routes_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Company">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Routes" Type="Self.Routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Routes">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Stops_Route">
+          <End Role="Routes" Type="Self.Routes" Multiplicity="1" />
+          <End Role="Routes_Stops" Type="Self.Routes_Stops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Routes_Stops">
+              <PropertyRef Name="Routes_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Stops_Stop">
+          <End Role="Stops" Type="Self.Stops" Multiplicity="1" />
+          <End Role="Routes_Stops" Type="Self.Routes_Stops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stops">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Routes_Stops">
+              <PropertyRef Name="Stops_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CoachModelStoreContainer">
+          <EntitySet Name="Buses" EntityType="Self.Buses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes_Buses" EntityType="Self.Routes_Buses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes_Stops" EntityType="Self.Routes_Stops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stops" EntityType="Self.Stops" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Drivers_Bus" Association="Self.FK_Drivers_Bus">
+            <End Role="Buses" EntitySet="Buses" />
+            <End Role="Drivers" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Buses_Bus" Association="Self.FK_Routes_Buses_Bus">
+            <End Role="Buses" EntitySet="Buses" />
+            <End Role="Routes_Buses" EntitySet="Routes_Buses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Buses_Route" Association="Self.FK_Routes_Buses_Route">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Routes_Buses" EntitySet="Routes_Buses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Company" Association="Self.FK_Routes_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Routes" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Stops_Route" Association="Self.FK_Routes_Stops_Route">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Routes_Stops" EntitySet="Routes_Stops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Stops_Stop" Association="Self.FK_Routes_Stops_Stop">
+            <End Role="Stops" EntitySet="Stops" />
+            <End Role="Routes_Stops" EntitySet="Routes_Stops" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CoachEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Buses" EntityType="CoachModel.Bus" />
+          <EntitySet Name="Companies" EntityType="CoachModel.Company" />
+          <EntitySet Name="Drivers" EntityType="CoachModel.Driver" />
+          <EntitySet Name="Routes" EntityType="CoachModel.Route" />
+          <EntitySet Name="Stops" EntityType="CoachModel.Stop" />
+          <AssociationSet Name="FK_Drivers_Bus" Association="CoachModel.FK_Drivers_Bus">
+            <End Role="Bus" EntitySet="Buses" />
+            <End Role="Driver" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Company" Association="CoachModel.FK_Routes_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Route" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="Routes_Buses" Association="CoachModel.Routes_Buses">
+            <End Role="Bus" EntitySet="Buses" />
+            <End Role="Route" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="Routes_Stops" Association="CoachModel.Routes_Stops">
+            <End Role="Route" EntitySet="Routes" />
+            <End Role="Stop" EntitySet="Stops" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="number" Type="Int32" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="capacity" Type="Int32" />
+          <NavigationProperty Name="Drivers" Relationship="CoachModel.FK_Drivers_Bus" FromRole="Bus" ToRole="Driver" />
+          <NavigationProperty Name="Routes" Relationship="CoachModel.Routes_Buses" FromRole="Bus" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Routes" Relationship="CoachModel.FK_Routes_Company" FromRole="Company" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="experience" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="busId" Type="Guid" />
+          <NavigationProperty Name="Bus" Relationship="CoachModel.FK_Drivers_Bus" FromRole="Driver" ToRole="Bus" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="number" Type="Int32" />
+          <Property Name="companyId" Type="Guid" />
+          <NavigationProperty Name="Company" Relationship="CoachModel.FK_Routes_Company" FromRole="Route" ToRole="Company" />
+          <NavigationProperty Name="Buses" Relationship="CoachModel.Routes_Buses" FromRole="Route" ToRole="Bus" />
+          <NavigationProperty Name="Stops" Relationship="CoachModel.Routes_Stops" FromRole="Route" ToRole="Stop" />
+        </EntityType>
+        <EntityType Name="Stop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Routes" Relationship="CoachModel.Routes_Stops" FromRole="Stop" ToRole="Route" />
+        </EntityType>
+        <Association Name="FK_Drivers_Bus">
+          <End Type="CoachModel.Bus" Role="Bus" Multiplicity="0..1" />
+          <End Type="CoachModel.Driver" Role="Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="busId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Company">
+          <End Type="CoachModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="CoachModel.Route" Role="Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Routes_Buses">
+          <End Type="CoachModel.Bus" Role="Bus" Multiplicity="*" />
+          <End Type="CoachModel.Route" Role="Route" Multiplicity="*" />
+        </Association>
+        <Association Name="Routes_Stops">
+          <End Type="CoachModel.Route" Role="Route" Multiplicity="*" />
+          <End Type="CoachModel.Stop" Role="Stop" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoachModelStoreContainer" CdmEntityContainer="CoachEntities">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CoachModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CoachModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CoachModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CoachModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CoachModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CoachModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CoachModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Buses">
+            <EntityTypeMapping TypeName="CoachModel.Bus">
+              <MappingFragment StoreEntitySet="Buses">
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="CoachModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="CoachModel.Driver">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="busId" ColumnName="busId" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes">
+            <EntityTypeMapping TypeName="CoachModel.Route">
+              <MappingFragment StoreEntitySet="Routes">
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stops">
+            <EntityTypeMapping TypeName="CoachModel.Stop">
+              <MappingFragment StoreEntitySet="Stops">
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Routes_Buses" TypeName="CoachModel.Routes_Buses" StoreEntitySet="Routes_Buses">
+            <EndProperty Name="Route">
+              <ScalarProperty Name="id" ColumnName="Routes_id" />
+            </EndProperty>
+            <EndProperty Name="Bus">
+              <ScalarProperty Name="id" ColumnName="Buses_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Routes_Stops" TypeName="CoachModel.Routes_Stops" StoreEntitySet="Routes_Stops">
+            <EndProperty Name="Stop">
+              <ScalarProperty Name="id" ColumnName="Stops_id" />
+            </EndProperty>
+            <EndProperty Name="Route">
+              <ScalarProperty Name="id" ColumnName="Routes_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoachCompanyModelStoreContainer" CdmEntityContainer="CoachCompany">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CoachCompanyModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CoachCompanyModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CoachCompanyModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CoachCompanyModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CoachCompanyModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CoachCompanyModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CoachCompanyModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CoachCompanyModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CoachCompanyModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Buses">
+      <EntityTypeMapping TypeName="CoachCompanyModel.Bus">
+        <MappingFragment StoreEntitySet="Buses">
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="CoachCompanyModel.Company">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drivers">
+      <EntityTypeMapping TypeName="CoachCompanyModel.Driver">
+        <MappingFragment StoreEntitySet="Drivers">
+          <ScalarProperty Name="busId" ColumnName="busId" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Routes">
+      <EntityTypeMapping TypeName="CoachCompanyModel.Route">
+        <MappingFragment StoreEntitySet="Routes">
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stops">
+      <EntityTypeMapping TypeName="CoachCompanyModel.Stop">
+        <MappingFragment StoreEntitySet="Stops">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Routes_Buses" TypeName="CoachCompanyModel.Routes_Buses" StoreEntitySet="Routes_Buses">
+      <EndProperty Name="Route">
+        <ScalarProperty Name="id" ColumnName="Routes_id" />
+      </EndProperty>
+      <EndProperty Name="Bus">
+        <ScalarProperty Name="id" ColumnName="Buses_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Routes_Stops" TypeName="CoachCompanyModel.Routes_Stops" StoreEntitySet="Routes_Stops">
+      <EndProperty Name="Stop">
+        <ScalarProperty Name="id" ColumnName="Stops_id" />
+      </EndProperty>
+      <EndProperty Name="Route">
+        <ScalarProperty Name="id" ColumnName="Routes_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
